@@ -19,6 +19,9 @@ async def get_url(key: str = Path(max_length=8, min_length=8), db: Session = Dep
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid url key")
     db_url = db.query(URLMODEL) .filter(URLMODEL.key == key.upper(), URLMODEL.is_active).first()
     if db_url:
+        db_url.clicks +=1
+        db.add(db_url)
+        db.commit()
         return RedirectResponse(db_url.target_url)
     else:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="URL not found")
