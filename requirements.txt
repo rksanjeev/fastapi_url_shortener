@@ -1,0 +1,16 @@
+PyYAML
+requests
+Rx
+six
+starlette
+uvicorn
+fastapi
+watchgod
+websockets
+ujson
+typing-extensions
+urllib3
+validators
+sqlalchemy
+psycopg2-binary
+python-dotenv
